@@ -1,0 +1,26 @@
+@MyApi_HostAddress =  http://localhost:5257
+
+GET {{MyApi_HostAddress}}/
+
+###
+
+GET {{MyApi_HostAddress}}/home/50
+
+
+###
+
+
+GET {{MyApi_HostAddress}}/home/?name="pop"
+
+###
+
+POST {{MyApi_HostAddress}}/data
+
+
+###
+
+POST {{MyApi_HostAddress}}/api/ControllerPost
+
+
+###
+
