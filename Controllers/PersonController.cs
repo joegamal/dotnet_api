@@ -17,8 +17,8 @@ public class PersonController : ControllerBase
     }
     
     [HttpPost("personok")]
-    public Task<JsonResult> FunOk()
+    public IActionResult FunOk()
     {
-        
+        return Ok(HttpContext.Request.Body);
     }
 }
