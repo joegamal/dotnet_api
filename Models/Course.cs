@@ -8,7 +8,11 @@ namespace Modles
 
         public int DoctorId {get;set;}
 
-        public int TaId {get;set;}
+        public Doctor Doc {get;set;}
+
+         public ICollection<Student> Students {get;set;}
+
+         public ICollection<TA> TAs {get;set;}
 
     }
 }
