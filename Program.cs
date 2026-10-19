@@ -1,62 +1,45 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.CustomDBConfigure(builder.Configuration);
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-builder.Services.AddDbContext<Context>(opt =>
-    opt.UseMySql(
-        connectionString,
-        ServerVersion.AutoDetect(connectionString)));
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+
+app.MapGet("/all", async (AppDbContext context) =>
 {
-    app.MapOpenApi();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/openapi/v1.json", "My API v1");
-    });
-}
+    return await context.MyModels.ToListAsync();
+});
 
-//app.UseHttpsRedirection();
-
-var summaries = new[]
+app.MapPost("/myadd", async (AppDbContext contxt, MyModel model, ILogger<Program> logger) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    
+    logger.LogInformation($"model is {model.ToString()}");
 
-app.MapGet("/weatherforecast", () =>
+    contxt.MyModels.Add(model);
+    return await contxt.SaveChangesAsync();
+
+});
+
+app.MapPost("/add", async (MyModel model, AppDbContext db, ILogger<Program> logger) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    logger.LogInformation("Received Name={Name}, Number={Number}", model.Name, model.Number);
 
-app.MapGet("/", () => "Hello world");
+    if (string.IsNullOrWhiteSpace(model.Name))
+        return Results.BadRequest("Name is required.");
 
-app.UseRouting();
+    db.MyModels.Add(model);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/add/{model.ID}", model);
+});
 
 app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
