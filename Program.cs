@@ -1,3 +1,4 @@
+using dotnet_api;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,10 +13,8 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 
-app.MapGet("/all", async (AppDbContext context) =>
-{
-    return await context.MyModels.ToListAsync();
-});
+app.MapGet("/all", async (AppDbContext context) => await context.MyModels.ToListAsync());
+
 
 app.MapPost("/myadd", async (AppDbContext contxt, MyModel model, ILogger<Program> logger) =>
 {
@@ -37,8 +36,15 @@ app.MapPost("/add", async (MyModel model, AppDbContext db, ILogger<Program> logg
     db.MyModels.Add(model);
     await db.SaveChangesAsync();
 
-    return Results.Created($"/add/{model.ID}", model);
+    return Results.Created($"/add/{model.Id}", model);
 });
+
+
+app.MapGet("/seed:rows", async (int rows, AppDbContext context) =>
+{
+    await Seeder.Seed(rows, context);
+});
+
 
 app.MapControllers();
 

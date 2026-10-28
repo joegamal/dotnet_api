@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MyModel>().HasKey(o => o.ID);
+            modelBuilder.Entity<MyModel>().HasKey(o => o.Id);
             
             modelBuilder.Entity<MyModel>()
                 .Property(o => o.Name)

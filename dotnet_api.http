@@ -10,3 +10,11 @@ Accept: application/json
   "name": "John",
   "age": 30
 }
+
+###
+GET {{dotnet_api_HostAddress}}/seed:rows?rows=1000
+Content-Type: application/json
+
+###
+GET {{dotnet_api_HostAddress}}/all
+Content-Type: application/json
