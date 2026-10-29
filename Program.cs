@@ -60,6 +60,7 @@ app.MapScalarApiReference();
 
         
 //dotnet add package Swashbuckle.AspNetCore.SwaggerUI
+// /swagger
 app.UseSwaggerUI(o => o.SwaggerEndpoint("/openapi/v1.json", "My API v1"));
 //dotnet add package Microsoft.Extensions.ApiDescription.Server
 
