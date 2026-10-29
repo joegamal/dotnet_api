@@ -10,7 +10,9 @@
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "10.0.12",
           "Microsoft.EntityFrameworkCore.Design": "10.0.13",
-          "Microsoft.EntityFrameworkCore.Sqlite": "10.0.13"
+          "Microsoft.EntityFrameworkCore.Sqlite": "10.0.13",
+          "Scalar.AspNetCore": "2.18.5",
+          "Swashbuckle.AspNetCore.SwaggerUI": "10.3.1"
         },
         "runtime": {
           "dotnet_api.dll": {}
@@ -440,6 +442,14 @@
           }
         }
       },
+      "Scalar.AspNetCore/2.18.5": {
+        "runtime": {
+          "lib/net10.0/Scalar.AspNetCore.dll": {
+            "assemblyVersion": "2.18.5.0",
+            "fileVersion": "2.18.5.0"
+          }
+        }
+      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.13": {
         "dependencies": {
           "SQLitePCLRaw.lib.e_sqlite3": "2.1.13",
@@ -582,6 +592,14 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {
             "assemblyVersion": "2.1.13.3146",
             "fileVersion": "2.1.13.3146"
+          }
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerUI/10.3.1": {
+        "runtime": {
+          "lib/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "assemblyVersion": "10.3.1.0",
+            "fileVersion": "10.3.1.3201"
           }
         }
       },
@@ -801,6 +819,13 @@
       "path": "newtonsoft.json/13.0.4",
       "hashPath": "newtonsoft.json.13.0.4.nupkg.sha512"
     },
+    "Scalar.AspNetCore/2.18.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m7sb2hqbdUXPBa4MvFy7GZ8SU4YGDYhaFkaiATXCMRhIDMA6kJrRQnBO4Z5PRz175sRfYfSXBlyrxckbhhrQ3A==",
+      "path": "scalar.aspnetcore/2.18.5",
+      "hashPath": "scalar.aspnetcore.2.18.5.nupkg.sha512"
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.13": {
       "type": "package",
       "serviceable": true,
@@ -828,6 +853,13 @@
       "sha512": "sha512-ZU60dSqoSNRe49KcQDUmOVgdRtjITOssVXFtiISs+zJXDI4D2Sndwpn2NOtzDQNPu0ZAvpoLPQ+GLKv6iEZn8Q==",
       "path": "sqlitepclraw.provider.e_sqlite3/2.1.13",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.2.1.13.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.SwaggerUI/10.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kXuMIVJBDD6qMwG78VUrKy4x5Ke98HU0Q023Sf2iSBO/x45c5BuByYPAExIs9UeVsjdGGgvLWU5jK8l6MO2Z0Q==",
+      "path": "swashbuckle.aspnetcore.swaggerui/10.3.1",
+      "hashPath": "swashbuckle.aspnetcore.swaggerui.10.3.1.nupkg.sha512"
     },
     "System.CodeDom/6.0.0": {
       "type": "package",

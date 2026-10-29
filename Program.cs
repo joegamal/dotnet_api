@@ -1,6 +1,7 @@
 using dotnet_api;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,5 +48,19 @@ app.MapGet("/seed:rows", async (int rows, AppDbContext context) =>
 
 
 app.MapControllers();
+
+
+// /openapi/v1.json
+app.MapOpenApi();
+
+
+//dotnet add package Scalar.AspNetCore
+// /scalar/v1
+app.MapScalarApiReference();
+
+        
+//dotnet add package Swashbuckle.AspNetCore.SwaggerUI
+app.UseSwaggerUI(o => o.SwaggerEndpoint("/openapi/v1.json", "My API v1"));
+//dotnet add package Microsoft.Extensions.ApiDescription.Server
 
 app.Run();
